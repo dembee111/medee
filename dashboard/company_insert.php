@@ -28,7 +28,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" method="POST" action="../Classes/ajaxProcess.php">
               <div class="box-body">
                 <div class="form-group">
                   <label for="companyName">Компаниин нэр</label>

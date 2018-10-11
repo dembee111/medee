@@ -37,15 +37,18 @@ if (isset($_POST["register_number"])) {
 
             $zeel = new Zeel();
             $res = $zeel->insert_zeel($credit);
-            $insertid = $zeel->hamsaatan($res);
+            // $insertid = $zeel->hamsaatan($res);
 
 
             if($res){
                 // $data['status'] ='success';
                 // $data['redirect_url'] =
                 // echo "<script>window.location = '../dashboard/successZeel.php';</script>";
-                echo $insertid;
-
+                // echo $insertid;
+                session_start();
+                  $_SESSION['last'] = $res;
+                  return $res;
+            
              }
              else {
                 return false;

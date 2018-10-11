@@ -323,6 +323,7 @@ function define_conf(value) {
            //   }
 
            window.location = '../dashboard/successZeel.php';
+           
 
          }
        });

@@ -24,11 +24,12 @@
        </div><!-- /.box-header -->
         <div class="box-body">
          <div class="callout callout-info">
-            <h3><?php echo $zeel->max_info(); ?></h3>
+            <h3>Зээлийн гэрээ амжиллтай үүслээ. Зээлийн дугаар: <?php echo $_SESSION['last']; ?></h3>
            <p>Хэвлэх товчин дээр дарж хэвлэж авна уу.</p>
          </div>
-         <a class="btn btn-default" onclick="var w=window.open(this.href,'printer','height=600,width=800,scrollbars=no,resizable=no,left=100,top=0,screenX=300,screenY=300');w.focus();return false;" href="bill.php?barimt=400872">
+         <a class="btn btn-default" onclick="var w=window.open(this.href,'printer','height=600,width=800,scrollbars=no,resizable=no,left=100,top=0,screenX=300,screenY=300');w.focus();return false;" href="print.php?barimtid=<?php echo $_SESSION['last'];  ?>">
            <i class="fa fa fa-print"></i> Хэвлэх</a>
+
        </div><!-- /.box-body -->
      </div><!-- /.box -->
    </div><!-- /.col -->

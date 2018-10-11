@@ -1,6 +1,7 @@
 <?php
  include 'DB.php';
  include 'Session.php';
+
 class Zeel{
 
   public $var;
@@ -11,6 +12,8 @@ class Zeel{
   public $db;
 
   public function __construct(){
+
+
     $this->db = mysqli_connect("localhost", "root", "", "medee");
     mysqli_set_charset($this->db,"utf8");
     if(mysqli_connect_errno()) {
@@ -133,6 +136,7 @@ class Zeel{
   }
 
   public function insert_zeel(credit $credit){
+
     $conn = $this->db;
 
      $id = mysqli_real_escape_string($conn, $credit->id);
@@ -158,7 +162,14 @@ class Zeel{
      $hamtran_id = mysqli_real_escape_string($conn, $credit->hamtran_id);
      $photo_id = mysqli_real_escape_string($conn, $credit->photo_id);
 
-     $query = "INSERT INTO zeels(`id`, `register_number`, `obog`, `ner`, `dugaar`,`nemelt_utas`,
+     $query_company = "SELECT * FROM company WHERE company_id = '$company_id'";
+
+     $result = $this->connectQuery($conn, $query_company);
+     $company_name = mysqli_fetch_array($result);
+     $company_name = $company_name['1'];
+
+
+     $query = "INSERT INTO `$company_name`(`id`, `register_number`, `obog`, `ner`, `dugaar`,`nemelt_utas`,
                                   `zturul_id`,`hayg`,`delgerengui`, `startdate`,`enddate`,`honog_id`,
                                     `honog_huu`,`unelgee`,`creditzeel`, `tuluh_huu`,`company_id`,`branch_id`,`user_id`,`role_id`,
                                   `hamtran_id`, `photo_id`) VALUES ('','$register_number', '$obog','$ner','$dugaar', '$nemelt_utas',
@@ -168,19 +179,20 @@ class Zeel{
 
 
 
-       $res = $this->connectQuery($conn, $query);
-       $this->lastid = mysqli_insert_id($conn);
-       $query2 = "SELECT * FROM Zeels where id = '$this->lastid'";
-       $result2 = mysqli_query($conn, $query2);
-       $lastid2 = mysqli_fetch_array($result2);
-       $count_row = mysqli_num_rows($result2);
-
-      if($count_row > 0){
-
-           return $this->insertid = $lastid2['0'];
-      }else{
-        echo "болдогүйдээ";
-      }
+        mysqli_query($conn, $query);
+       $suul = mysqli_insert_id($conn);
+      //  $query2 = "SELECT * FROM Zeels where id = '$this->lastid'";
+      //  $result2 = mysqli_query($conn, $query2);
+      //  $lastid2 = mysqli_fetch_array($result2);
+      //  $count_row = mysqli_num_rows($result2);
+      //
+      // if($count_row > 0){
+      //
+      //      return $this->insertid = $lastid2['0'];
+      // }else{
+      //   echo "болдогүйдээ";
+      // }
+      return $suul;
 
       mysqli_close($conn);
 
@@ -229,8 +241,16 @@ public function printval(){
   }
 
   public function getZeel(){
+
+    $company_id = User::get('company_id');
     $conn = $this->db;
-    $query = "SELECT * FROM zeels";
+
+    $query1 = "SELECT * FROM company WHERE company_id = '$company_id'";
+    $result1 = mysqli_query($conn, $query1);
+    $company_all = mysqli_fetch_array($result1);
+    $company_name = $company_all['1'];
+    
+    $query = "SELECT * FROM `$company_name`";
     $result = mysqli_query($conn, $query);
     return $result;
   }

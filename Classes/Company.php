@@ -18,7 +18,7 @@ class Company
   $company_address, $company_phone){
 
     $this->company_id = $company_id;
-    $this->company_name = $register_number;
+    $this->company_name = $company_name;
     $this->database_type = $database_type;
     $this->database_user = $database_user;
     $this->database_password = $database_password;

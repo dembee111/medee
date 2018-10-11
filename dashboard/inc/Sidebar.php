@@ -98,7 +98,7 @@
       <li><a href="#"><i class="fa fa-link"></i> <span>Хар жагсаалт</span></a></li>
       <li><a href="#"><i class="fa fa-link"></i> <span>Мессеж</span></a></li>
       <li><a href="#"><i class="fa fa-link"></i> <span>Засварын түүх</span></a></li>
-
+      <?php if (User::get('role_id') == '1') { ?>
       <li class="treeview">
         <a href="#"><i class="fa fa-link"></i> <span>Компанийн тохиргоо</span>
           <span class="pull-right-container">
@@ -106,11 +106,15 @@
             </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="company_insert.php">Компани үүсгэх</a></li>
-          <li><a href="#">Компани жагсаалт</a></li>
-          <li><a href="#">Үр дүнгийн тайлан</a></li>
+
+            <li><a href="company_insert.php">Компани үүсгэх</a></li>
+            <li><a href="company_list.php">Компани жагсаалт</a></li>
+            <li><a href="#">Үр дүнгийн тайлан</a></li>
+
+
         </ul>
       </li>
+      <?php  } ?>
     </ul>
 
 
@@ -118,3 +122,4 @@
   </section>
   <!-- /.sidebar -->
 </aside>
+<?php  ?>
